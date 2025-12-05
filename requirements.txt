@@ -1,0 +1,9 @@
+Flask
+requests
+python-dotenv
+pandas
+numpy
+scikit-learn
+gunicorn
+flask-cors
+flask-caching
