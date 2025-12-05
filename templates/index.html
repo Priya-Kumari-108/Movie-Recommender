@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Home — MyMovies</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo">Orion</div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="#">Trending</a>
+      <a href="#">Top Rated</a>
+      <a href="/surprise">Surprise Me</a>
+    </nav>
+    <form action="/recommend" method="post" class="search-form">
+      <input id="movie-search" type="text" name="movie" placeholder="Search for movies..." autocomplete="off"/>
+      <div class="suggestion-box"></div>
+      <button type="submit">🔍</button>
+    </form>
+  </div>
+
+  <!-- Hero Carousel -->
+  <div class="hero-wrapper-container">
+    <button class="arrow left" id="hero-left">&#10094;</button>
+    <div class="hero-wrapper">
+      {% for h in hero_movies %}
+      <div class="hero-slide" style="background-image: url('{{ h.backdrop }}');">
+        <div class="hero-overlay">
+          <h2>{{ h.title }}</h2>
+          <p>⭐ {{ h.rating }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <button class="arrow right" id="hero-right">&#10095;</button>
+  </div>
+
+  <!-- Top Five Movies -->
+  <div class="section">
+    <h2 class="section-title">Top-10 Movies</h2>
+    <div class="carousel" id="topfive-carousel">
+      {% for t in top_five %}
+      <div class="carousel-card">
+        <span class="number">{{ loop.index }}</span>
+        <a href="/movie/{{ t.id }}">
+          <img src="{{ t.poster }}" alt="{{ t.title }}" />
+          <div class="overlay">
+            <h3>{{ t.title }}</h3>
+            <p>⭐{{ t.rating }}</p>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+    <button class="arrow left" data-target="topfive-carousel">&#10094;</button>
+    <button class="arrow right" data-target="topfive-carousel">&#10095;</button>
+  </div>
+
+  <!-- Trending Now -->
+  <div class="section">
+    <h2 class="section-title">Trending Now</h2>
+    <div class="carousel" id="trending-carousel">
+      {% for t in trending %}
+      <div class="carousel-card">
+        <a href="/movie/{{ t.id }}">
+          <img src="{{ t.poster }}" alt="{{ t.title }}" />
+          <div class="overlay">
+            <h3>{{ t.title }}</h3>
+            <p>⭐{{ t.rating }}</p>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+    <button class="arrow left" data-target="trending-carousel">&#10094;</button>
+    <button class="arrow right" data-target="trending-carousel">&#10095;</button>
+  </div>
+
+  <!-- Top Rated -->
+  <div class="section">
+    <h2 class="section-title">Top Rated</h2>
+    <div class="carousel" id="toprated-carousel">
+      {% for tr in top_rated %}
+      <div class="carousel-card">
+        <a href="/movie/{{ tr.id }}">
+          <img src="{{ tr.poster }}" alt="{{ tr.title }}" />
+          <div class="overlay">
+            <h3>{{ tr.title }}</h3>
+            <p>⭐{{ tr.rating }}</p>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+    <button class="arrow left" data-target="toprated-carousel">&#10094;</button>
+    <button class="arrow right" data-target="toprated-carousel">&#10095;</button>
+  </div>
+  
+
+  <!-- Additional Categories -->
+  {% for cat_name, cat_movies in additional_categories.items() %}
+  <div class="section">
+    <h2 class="section-title">{{ cat_name }}</h2>
+    <div class="carousel" id="category-{{ loop.index }}">
+      {% for cm in cat_movies %}
+      <div class="carousel-card">
+        <a href="/movie/{{ cm.id }}">
+          <img src="{{ cm.poster }}" alt="{{ cm.title }}" />
+          <div class="overlay">
+            <h3>{{ cm.title }}</h3>
+            <p>⭐{{ cm.rating }}</p>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+    <button class="arrow left" data-target="category-{{ loop.index }}">&#10094;</button>
+    <button class="arrow right" data-target="category-{{ loop.index }}">&#10095;</button>
+  </div>
+  {% endfor %}
+
+  <footer>
+    <p>&copy; 2025 MyMovies</p>
+  </footer>
+
+  <!-- Movies list for autocomplete -->
+  <script>
+      window.moviesList = {{ movies|tojson }};
+  </script>
+  <script src="{{ url_for('static', filename='slider.js') }}"></script>
+</body>
+</html>

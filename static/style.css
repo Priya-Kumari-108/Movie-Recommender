@@ -1,0 +1,388 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #141414, #1c1c1c);
+    color: white;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: L;
+    padding: 15px 20px;
+    background: #111;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffcc00;
+}
+
+.navbar nav a {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+}
+
+.navbar nav a:hover {
+    color: #ffcc00;
+}
+
+.search-form {
+    position: relative;
+}
+
+.search-form input {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: none;
+    width: 200px;
+}
+
+.search-form button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 8px 12px;
+    border: none;
+    background: #ffcc00;
+    border-radius: 0 6px 6px 0;
+    cursor: pointer;
+}
+
+.suggestion-box {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #222;
+    z-index: 1000;
+    border-radius: 0 0 6px 6px;
+}
+
+.suggestion-item {
+    padding: 6px 10px;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background: #333;
+}
+
+.hero-wrapper-container {
+    position: relative;
+    overflow: hidden;
+    height: 500px;
+}
+
+.hero-wrapper {
+    display: flex;
+    transition: transform 0.6s ease-in-out;
+}
+
+.hero-slide {
+    flex: 0 0 100%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    min-height: 500px;
+}
+
+.hero-overlay {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.6);
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 18px;
+    color: #ffcc00;
+    font-weight: bold;
+}
+
+
+
+.arrow.left { left: 10px; }
+.arrow.right { right: 10px; }
+
+.carousel-wrapper {
+    position: relative;
+    margin-top: 10px;
+}
+
+.carousel {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden !important;
+    scroll-behavior: smooth;
+    gap: 15px;
+    padding: 10px 0;
+}
+
+.carousel-card {
+    min-width: 180px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #222;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.carousel-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(255, 204, 0, 0.685);
+}
+
+.carousel-card img {
+    width: 100%;
+    display: block;
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 10px;
+    transform: translateY(100%);
+    transition: transform 0.3s;
+    text-align: left;
+}
+
+.carousel-card:hover .overlay {
+    transform: translateY(0);
+}
+
+.number {
+    position: absolute;
+    top: -25px;
+    left: -25px;
+    font-size: 70px;
+    font-weight: bold;
+    color:#000000;
+    text-shadow: 0 0 5px #0ff,
+                0 0 10px #0ff,
+                0 0 20px #0ff,
+                0 0 40px #0ff,
+                0 0 80px #0ff;
+    padding: 20px;    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Make links inherit color and remove blue underline */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ffcc00;
+}
+
+/* Main container for detail pages */
+.container {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #141414;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+    text-align: center;
+}
+.back-btn {
+    display: inline-block;
+    margin-bottom: 15px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    background: #222;
+    font-size: 14px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.back-btn:hover {
+    background: #333;
+    transform: translateY(-1px);
+}
+
+.container h1 {
+    margin: 5px 0 10px;
+    font-size: 32px;
+}
+
+.container p {
+    margin: 4px 0;
+}
+
+.container em {
+    color: #ffcc00;
+}
+
+.container h2 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+.trailer {
+    margin: 25px auto 10px;
+    max-width: 800px;
+}
+
+.trailer iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;      /* keeps it responsive */
+    border: none;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+}
+.cast-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px;
+    margin-bottom: 20px;
+}
+
+.cast-card {
+    width: 150px;
+    background: #1f1f1f;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.6);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    text-align: center;
+}
+
+.cast-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.cast-card span {
+    display: block;
+    padding: 8px 6px 10px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.cast-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 26px rgba(0,0,0,0.8);
+}
+
+.cast-card:hover span {
+    color: #ffcc00;
+}
+.carousel-wrapper {
+    position: relative;
+    margin-top: 10px;
+    padding: 0 40px;
+}
+
+.carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 15px;
+    padding: 10px 0 5px;
+}
+
+.carousel::-webkit-scrollbar {
+    height: 6px;
+}
+
+.carousel::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 3px;
+}
+
+.carousel-card {
+    min-width: 180px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #222;
+    position: relative;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.carousel-card img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+}
+
+.carousel-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 22px rgba(0,0,0,0.75);
+}
+
+/* Remove arrow buttons from all sections */
+.arrow {
+    display: none !important;
+}
+
+/* Remove arrow buttons fully */
+.section .arrow {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* TOP FIVE Movies — bigger cards */
+#topfive-carousel .carousel-card {
+    min-width: 240px;
+    height: 360px;
+}
+
+/* Make poster fill card completely */
+#topfive-carousel .carousel-card img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+/* Bigger ranking number */
+#topfive-carousel .number {
+    font-size: 90px;
+    top: -25px;
+    left: -25px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

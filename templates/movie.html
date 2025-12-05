@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ movie.title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-btn">⬅ Back to Home</a>
+        <h1>{{ movie.title }}</h1>
+        <p><strong>⭐ {{ movie.rating }}</strong> | {{ movie.release_date }} | {{ movie.runtime }} min</p>
+        <p><em>{{ movie.genres | join(', ') }}</em></p>
+        <p>{{ movie.overview }}</p>
+
+        {% if movie.trailer %}
+        <div class="trailer">
+            <iframe src="https://www.youtube.com/embed/{{ movie.trailer }}" allowfullscreen></iframe>
+        </div>
+        {% endif %}
+
+        <h2>Cast</h2>
+        <div class="cast-section">
+            {% for actor in movie.cast %}
+            <a href="/actor/{{ actor.id }}" class="cast-card">
+                {% if actor.profile_path %}
+                <img src="https://image.tmdb.org/t/p/w200{{ actor.profile_path }}" alt="{{ actor.name }}">
+                {% else %}
+                <img src="https://via.placeholder.com/200x200?text=No+Image" alt="{{ actor.name }}">
+                {% endif %}
+                <span>{{ actor.name }}</span>
+            </a>
+            {% endfor %}
+        </div>
+
+        <h2>Similar Movies</h2>
+        <div class="carousel-wrapper">
+            <button class="arrow left" data-target="similar-carousel">◀</button>
+            <div class="carousel" id="similar-carousel">
+                {% for m in similar %}
+                <div class="carousel-card">
+                    <a href="/movie/{{ m.id }}">
+                        <img src="{{ m.poster }}" alt="{{ m.title }}">
+                        <div class="overlay">
+                            <h3>{{ m.title }}</h3>
+                            <p>⭐ {{ m.rating }}</p>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+            <button class="arrow right" data-target="similar-carousel">▶</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='slider.js') }}"></script>
+</body>
+</html>

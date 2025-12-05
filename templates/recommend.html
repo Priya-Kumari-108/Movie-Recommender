@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommendations for {{ movie }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">Orion</div>
+        <nav>
+            <a href="/">Home</a>
+            <a href="#">Trending</a>
+            <a href="#">Top Rated</a>
+            <a href="/surprise">Surprise Me</a>
+        </nav>
+        <form action="/recommend" method="post" class="search-form">
+            <input id="movie-search" type="text" name="movie"
+                   placeholder="Search for movies..." autocomplete="off" />
+            <div class="suggestion-box"></div>
+            <button type="submit"></button>
+        </form>
+    </div>
+
+    <div class="container">
+        <a href="/" class="back-btn">⬅ Back to Home</a>
+        <h1>Recommendations for "{{ movie }}"</h1>
+
+        {% if recommendations %}
+        <!-- Horizontal row with pop effect -->
+        <div class="carousel" id="recommend-carousel">
+            {% for r in recommendations %}
+            <div class="carousel-card">
+                <a href="/movie/{{ r.id }}">
+                    <img src="{{ r.poster }}" alt="{{ r.title }}">
+                    <div class="overlay">
+                        <h3>{{ r.title }}</h3>
+                        <p>⭐ {{ r.rating }}</p>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p>No recommendations found. Make sure you typed the movie name correctly.</p>
+        {% endif %}
+    </div>
+
+    <script>
+        window.moviesList = {{ movies|tojson if movies is defined else [] }};
+    </script>
+    <script src="{{ url_for('static', filename='slider.js') }}"></script>
+</body>
+</html>
